@@ -1,3 +1,5 @@
+""" Test functions in readligo.py """
+
 import json
 import os
 
@@ -15,14 +17,6 @@ event = events[eventname]
 fn_H1 = event['fn_H1']
 fn_L1 = event['fn_L1']
 
-"""
-Really need some clarification from TA on this part. What 'FOUR' test?
-"""
-
-
-def test_read_frame(filename=f'{PROJECT_PATH}/data/H-H1_LOSC_4_V1-1126259446-32.gwf'):
-    # TODO: add test for read_frame. But do we have a frame(.gwf) file?
-    pass
 
 
 def test_read_hdf5(filename=f"{PROJECT_PATH}/data/H-H1_LOSC_4_V2-1126259446-32.hdf5"):
@@ -48,10 +42,24 @@ def test_loaddata():
 
 
 def test_dq2segs():
-    # TODO: add test for dq2segs
-    pass
+    strain_H1, time_H1, chan_dict_H1 = rl.loaddata(f"{PROJECT_PATH}/data/" + fn_H1, 'H1')
+    segs = rl.dq2segs(chan_dict_H1['BURST_CAT3'], time_H1[0])
+    assert isinstance(segs, rl.SegmentList)
+    for seg in segs:
+        assert all(type(x) == int for x in seg)
 
 
-def test_dq_channel_to_seglist():
-    # TODO: add test for dq_channel_to_seglist
-    pass
+def test_dq_channel_to_seglist(DQflag = 'CBC_CAT3'):
+    _, _, chan_dict = rl.loaddata(f'{PROJECT_PATH}/data/' + fn_L1, 'H1')
+    # Test with a dictionary input
+    channel_dict = {'DEFAULT': np.array([0, 1, 1, 0, 0, 1, 1, 1])}
+    segment_list = rl.dq_channel_to_seglist(channel_dict)
+    assert type(segment_list) == list
+    assert all(type(seg) == slice for seg in segment_list)
+
+    # Test with a numpy array input
+    channel = chan_dict[DQflag]
+    segment_list = rl.dq_channel_to_seglist(channel)
+    assert type(segment_list) == list
+    assert all(type(seg) == slice for seg in segment_list)
+
