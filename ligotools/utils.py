@@ -1,5 +1,5 @@
 import numpy as np
-
+import matplotlib.pyplot as plt
 # function to whiten data
 def whiten(strain, interp_psd, dt):
     Nt = len(strain)
@@ -22,7 +22,7 @@ from scipy.io import wavfile
 # function to keep the data within integer limits, and write to wavfile:
 def write_wavfile(filename,fs,data):
     d = np.int16(data/np.max(np.abs(data)) * 32767 * 0.9)
-    wavfile.write(filename,int(fs), d)
+    wavfile.write(filename, int(fs), d)
     
     
 # function that shifts frequency of a band-passed signal
@@ -40,17 +40,9 @@ def reqshift(data,fshift=100,sample_rate=4096):
     return z
 
 
-def draw_plot(make_plots, det):
-    if make_plots:
-       # plotting changes for the detectors:
-       if det == 'L1': 
-           pcolor='g'
-           strain_whitenbp = strain_L1_whitenbp
-           template_L1 = template_match.copy()
-       else:
-           pcolor='r'
-           strain_whitenbp = strain_H1_whitenbp
-           template_H1 = template_match.copy()
+def draw_plot(time, timemax, strain_whitenbp, template_match, SNR, det, eventname, plottype, pcolor, tevent, template_fft,
+              datafreq, d_eff, freqs, data_psd, fs):
+
 
        # -- Plot the result
        plt.figure(figsize=(10,8))
