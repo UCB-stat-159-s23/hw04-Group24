@@ -1,5 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import os
+PROJECT_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '.'))
 # function to whiten data
 def whiten(strain, interp_psd, dt):
     Nt = len(strain)
@@ -65,7 +67,7 @@ def draw_plot(time, timemax, strain_whitenbp, template_match, SNR, det, eventnam
        plt.grid('on')
        plt.xlabel('Time since {0:.4f}'.format(timemax))
        plt.legend(loc='upper left')
-       plt.savefig(eventname+"_"+det+"_SNR."+plottype)
+       plt.savefig(PROJECT_PATH+'/figures/'+eventname+"_"+det+"_SNR."+plottype)
 
        plt.figure(figsize=(10,8))
        plt.subplot(2,1,1)
@@ -88,7 +90,7 @@ def draw_plot(time, timemax, strain_whitenbp, template_match, SNR, det, eventnam
        plt.ylabel('whitened strain (units of noise stdev)')
        plt.legend(loc='upper left')
        plt.title(det+' Residual whitened data after subtracting template around event')
-       plt.savefig(eventname+"_"+det+"_matchtime."+plottype)
+       plt.savefig(PROJECT_PATH+'/figures/'+eventname+"_"+det+"_matchtime."+plottype)
 
        # -- Display PSD and template
        # must multiply by sqrt(f) to plot template fft on top of ASD:
@@ -103,4 +105,4 @@ def draw_plot(time, timemax, strain_whitenbp, template_match, SNR, det, eventnam
        plt.ylabel('strain noise ASD (strain/rtHz), template h(f)*rt(f)')
        plt.legend(loc='upper left')
        plt.title(det+' ASD and template around event')
-       plt.savefig(eventname+"_"+det+"_matchfreq."+plottype)
+       plt.savefig(PROJECT_PATH+'/figures/'+eventname+"_"+det+"_matchfreq."+plottype)
