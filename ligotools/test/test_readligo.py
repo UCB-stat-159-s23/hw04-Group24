@@ -52,8 +52,8 @@ def test_dq2segs():
 def test_dq_channel_to_seglist(DQflag = 'CBC_CAT3'):
     _, _, chan_dict = rl.loaddata(f'{PROJECT_PATH}/data/' + fn_L1, 'H1')
     # Test with a dictionary input
-    channel_dict = {'DEFAULT': np.array([0, 1, 1, 0, 0, 1, 1, 1])}
-    segment_list = rl.dq_channel_to_seglist(channel_dict)
+
+    segment_list = rl.dq_channel_to_seglist(chan_dict)
     assert type(segment_list) == list
     assert all(type(seg) == slice for seg in segment_list)
 
