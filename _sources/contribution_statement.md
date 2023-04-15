@@ -6,7 +6,7 @@ Han Wang:
 * Help June with `draw_plot` function in `utils.py`
 * Add tests to `utils.py`
 * Deploy the GitHub Pages and Actions
-* Help June with `Makefile
+* Help June with `Makefile`
 
 Lei Zhang:
 
@@ -19,3 +19,9 @@ Haoyu Liu:
 * Make the package Installable
 * Set up the repository to be a proper JupyterBook
 * Add Binder 
+
+June Lee:
+
+* Make `draw_plot` function in `utils.py`
+* Make `Makefile`
+* Github Pages and Actions
