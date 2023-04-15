@@ -32,3 +32,20 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./_build/html
+        
+        
+## env : creates and configures the environment
+## html : build the JupyterBook normally (calling `jupyterbook build .`). Note this build can only be viewed if the repository is cloned locally, or with the VNC desktop on the Hub.
+## clean : clean up the `figures`, `audio`  and `_build` folders.
+.PHONY: env html clean
+
+env:
+    conda env create -f environment.yml
+    conda activate ligo
+    python -m ipykernel install --user --name=ligo
+
+html:
+    jupyter-book build .
+
+clean:
+    rm -rf figures audio _build
