@@ -6,6 +6,7 @@ Han Wang:
 * Help June with `draw_plot` function in `utils.py`
 * Add tests to `utils.py`
 * Deploy the GitHub Pages and Actions
+* Help June with `Makefile
 
 Lei Zhang:
 
