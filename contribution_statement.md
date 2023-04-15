@@ -5,7 +5,7 @@ Han Wang:
 * Add tests to `readligo.py`
 * Help June with `draw_plot` function in `utils.py`
 * Add tests to `utils.py`
-* Deploy the GitHub Pages and Actions
+* Help June with deploy the GitHub Pages and Actions
 * Help June with `Makefile`
 
 Lei Zhang:
