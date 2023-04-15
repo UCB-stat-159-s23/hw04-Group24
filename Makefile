@@ -1,3 +1,4 @@
+## Makefile to build JupyterBook for this repository
 
 ## env: creates and configures the environment.
 ## html: build the JupyterBook normally (calling jupyterbook build .). Note this build can only be viewed if the repository is cloned locally, or with the VNC desktop on the Hub.
